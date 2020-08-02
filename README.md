@@ -1,2 +1,2 @@
 # cyber-rs
-Library for cyber
+Library for cyber blockchain
