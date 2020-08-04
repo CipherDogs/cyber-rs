@@ -14,3 +14,9 @@ categories = ["cryptography"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+bech32 = "0.7.2"
+hdwallet = "0.2.5"
+ripemd160 = "0.9.1"
+secp256k1 = "0.17.2"
+sha2 = "0.9.1"
+tiny-bip39 = "0.7.3"
