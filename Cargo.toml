@@ -19,4 +19,5 @@ hdwallet = "0.2.5"
 ripemd160 = "0.9.1"
 secp256k1 = "0.17.2"
 sha2 = "0.9.1"
+subtle-encoding = {version = "0.5.1", features = ["bech32-preview"]}
 tiny-bip39 = "0.7.3"
