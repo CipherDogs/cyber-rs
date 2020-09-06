@@ -7,6 +7,7 @@ use sha2::{Digest, Sha256};
 
 const PUBLIC_KEY_LENGTH: usize = 33;
 
+/// An account possessing a private key. `PrivateKeyAccount` is tied to an address and can sign
 pub struct PrivateKeyWallet(SecretKey);
 
 impl PrivateKeyWallet {
@@ -19,7 +20,7 @@ impl PrivateKeyWallet {
     }
 
     pub fn from_seed(phrase: String, path: Option<String>) -> PrivateKeyWallet {
-        let mnemonic = Mnemonic::from_phrase(phrase.as_str(), Language::English).expect("");
+        let mnemonic = Mnemonic::from_phrase(phrase.as_str(), Language::English).expect("Failed to create mnemonic phrase");
         let seed = Seed::new(&mnemonic, "");
         let seed_bytes = seed.as_bytes();
 
@@ -40,6 +41,7 @@ impl PrivateKeyWallet {
     }
 }
 
+/// An account possessing a public key. Using `PublicKeyWallet` you can get the address.
 pub struct PublicKeyWallet([u8; PUBLIC_KEY_LENGTH]);
 
 impl PublicKeyWallet {
