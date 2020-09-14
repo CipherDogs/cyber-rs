@@ -20,7 +20,8 @@ impl PrivateKeyWallet {
     }
 
     pub fn from_seed(phrase: String, path: Option<String>) -> PrivateKeyWallet {
-        let mnemonic = Mnemonic::from_phrase(phrase.as_str(), Language::English).expect("Failed to create mnemonic phrase");
+        let mnemonic = Mnemonic::from_phrase(phrase.as_str(), Language::English)
+            .expect("Failed to create mnemonic phrase");
         let seed = Seed::new(&mnemonic, "");
         let seed_bytes = seed.as_bytes();
 
