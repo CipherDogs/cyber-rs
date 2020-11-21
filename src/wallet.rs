@@ -50,6 +50,12 @@ impl PublicKeyWallet {
         &self.0
     }
 
+    pub fn to_string(&self) -> String {
+        let secp = Secp256k1::new();
+        let public_key = PublicKey::from_slice(&self.0).expect("Invalid bytes in the public key");
+        public_key.to_string()
+    }
+
     pub fn from_key(pk: [u8; PUBLIC_KEY_LENGTH]) -> PublicKeyWallet {
         PublicKeyWallet(pk)
     }
