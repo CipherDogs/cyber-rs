@@ -1,3 +1,7 @@
+#![doc(
+    html_logo_url = "https://raw.githubusercontent.com/CipherDogs/cyber-rs/master/logo.png",
+    html_favicon_url = "https://raw.githubusercontent.com/CipherDogs/cyber-rs/master/logo.png"
+)]
 //! cyber
 //!
 //! Library for cyber blockchain (https://cybercongress.ai/)
