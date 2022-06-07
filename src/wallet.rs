@@ -1,8 +1,8 @@
 use bech32;
 use bip39::{Language, Mnemonic, Seed};
+use hdwallet::secp256k1::{PublicKey, Secp256k1, SecretKey};
 use hdwallet::{DefaultKeyChain, ExtendedPrivKey, KeyChain};
-use ripemd160::Ripemd160;
-use secp256k1::{PublicKey, Secp256k1, SecretKey};
+use ripemd::Ripemd160;
 use sha2::{Digest, Sha256};
 
 const PUBLIC_KEY_LENGTH: usize = 33;
@@ -61,14 +61,14 @@ impl PublicKeyWallet {
 
     pub fn from_private_key(key: &SecretKey) -> PublicKeyWallet {
         let secp = Secp256k1::new();
-        let public_key = PublicKey::from_secret_key(&secp, &key);
+        let public_key = PublicKey::from_secret_key(&secp, key);
 
         PublicKeyWallet(public_key.serialize())
     }
 
     pub fn to_address(&self) -> String {
         let mut sha256 = Sha256::new();
-        sha256.update(self.0.to_vec());
+        sha256.update(self.0);
         let s = sha256.finalize();
 
         let mut ripemd = Ripemd160::new();
