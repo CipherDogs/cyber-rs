@@ -1,6 +1,6 @@
 [package]
 name = "cyber"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["DEADBLACKCLOVER <deadblackclover@protonmail.com>"]
 description = "Library for cyber blockchain"
 edition = "2018"
