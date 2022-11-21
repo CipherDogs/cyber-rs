@@ -66,7 +66,7 @@ impl PublicKeyWallet {
         PublicKeyWallet(public_key.serialize())
     }
 
-    pub fn to_address(&self) -> String {
+    pub fn to_address(&self, prefix: &str) -> String {
         let mut sha256 = Sha256::new();
         sha256.update(self.0);
         let s = sha256.finalize();
@@ -78,7 +78,7 @@ impl PublicKeyWallet {
         let five_bit_r =
             bech32::convert_bits(&r, 8, 8, true).expect("Unsuccessful bech32::convert_bits call");
 
-        subtle_encoding::bech32::encode("cyber", five_bit_r)
+        subtle_encoding::bech32::encode(prefix, five_bit_r)
     }
 }
 
@@ -86,10 +86,10 @@ impl PublicKeyWallet {
 mod tests {
     use super::*;
 
-    fn from_seed(phrase: String) -> String {
+    fn from_seed(phrase: String) -> PublicKeyWallet {
         let sk = PrivateKeyWallet::from_seed(phrase, None);
         let pk = PublicKeyWallet::from_private_key(sk.to_secret_key());
-        pk.to_address()
+        pk
     }
 
     #[test]
@@ -97,15 +97,33 @@ mod tests {
         assert_eq!(
             from_seed(String::from(
                 "soap weird dutch gap region blossom antique economy legend loan ugly boring"
-            )),
+            ))
+            .to_address("cyber"),
             String::from("cyber1gw824ephm676c93ur3zgefctj3frvupc4tmn3v")
         );
 
         assert_eq!(
             from_seed(String::from(
                 "tomorrow few flag walnut dwarf kiwi close stick sniff satoshi chest vacuum"
-            )),
+            ))
+            .to_address("cyber"),
             String::from("cyber1q652n3ylk27rxkkxhj8d0ty3txcm2pjnn4q46r")
+        );
+
+        assert_eq!(
+            from_seed(String::from(
+                "soap weird dutch gap region blossom antique economy legend loan ugly boring"
+            ))
+            .to_address("bostrom"),
+            String::from("bostrom1gw824ephm676c93ur3zgefctj3frvupc3nggx3")
+        );
+
+        assert_eq!(
+            from_seed(String::from(
+                "tomorrow few flag walnut dwarf kiwi close stick sniff satoshi chest vacuum"
+            ))
+            .to_address("bostrom"),
+            String::from("bostrom1q652n3ylk27rxkkxhj8d0ty3txcm2pjnhdnwd7")
         );
     }
 }
