@@ -20,5 +20,5 @@ Wallet generation function
 let phrase = String::from("soap weird dutch gap region blossom antique economy legend loan ugly boring");
 let sk = PrivateKeyWallet::from_seed(phrase, None);
 let pk = PublicKeyWallet::from_private_key(sk.to_secret_key());
-pk.to_address() // cyber1gw824ephm676c93ur3zgefctj3frvupc4tmn3v
+pk.to_address("cyber") // cyber1gw824ephm676c93ur3zgefctj3frvupc4tmn3v
 ```
