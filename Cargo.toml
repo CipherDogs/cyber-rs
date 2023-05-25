@@ -1,6 +1,6 @@
 [package]
 name = "cyber"
-version = "1.0.1"
+version = "1.0.2"
 authors = ["DEADBLACKCLOVER <deadblackclover@protonmail.com>"]
 description = "Library for cyber blockchain"
 edition = "2018"
@@ -14,9 +14,9 @@ categories = ["cryptography"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bech32 = "0.9.0"
-hdwallet = "0.3.1"
-ripemd = "0.1.1"
-sha2 = "0.10.2"
+bech32 = "0.9"
+hdwallet = "0.4"
+ripemd = "0.1"
+sha2 = "0.10"
 subtle-encoding = {version = "0.5.1", features = ["bech32-preview"]}
-tiny-bip39 = "0.8.2"
+tiny-bip39 = "1.0"
